@@ -8,8 +8,7 @@ const dataValidate = (schemas)=>{
                 res.send(findErr)
             }else{
                 next()
-            }
-        
+            } 
     }
 }
 
