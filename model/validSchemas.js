@@ -7,7 +7,11 @@ const resgisterSchema = Joi.object({
     email : Joi.string().email().required(),
     password : Joi.string().min(6).max(12).required()
 })
-
+const loninSchemas = Joi.object({
+    email : Joi.string().email().required(),
+    password : Joi.string().required()
+})
 module.exports = {
-    resgisterSchema
+    resgisterSchema,
+    loninSchemas
 };

@@ -6,8 +6,9 @@ const DBConn = process.env.DBConnection;
 
 const DB_Conncectd = async ()=>{
     try{
-        mongoose.connect(DBConn);
-        console.log("db is connected")
+        mongoose.connect(DBConn)
+        .then(()=>console.log("db is connected"))
+        .catch((err)=>console.log(err.message))
     }
     catch(err){
         console.log(err.message)

@@ -11,7 +11,11 @@ const Joi = require('joi');
 const postRegister = async (req, res)=>{
     const addingData = modelAddingData(req.body)
     const dataStore = await addingData.save();
-    res.send(dataStore);
+    res.send("User Create Successfully");
+}
+const loginAccess = async (req, res)=>{
+    const findData = await modelAddingData.find({email : req.body.email})
+    res.send(findData);   
 }
 
     module.exports = {
@@ -20,5 +24,6 @@ const postRegister = async (req, res)=>{
         getProfile,
         getReister,
         getLogin,
-        postRegister
+        postRegister,
+        loginAccess
     }
