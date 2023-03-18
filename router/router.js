@@ -12,7 +12,9 @@ router.get("/register", getReister)
 router.get("/login", getLogin)
 router.post("/register",dataValidate(resgisterSchema) , postRegister)
 router.post("/login",dataValidate(loninSchemas) , loginAccess)
-
+router.get("/show", (req, res)=>{
+    res.send(req.cookies.showToken)
+})
 
 
 module.exports = router;

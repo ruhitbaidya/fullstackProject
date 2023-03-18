@@ -7,7 +7,11 @@ const getHome =(req, res)=>{res.render("home", {title : "Home"})}
 const getBlog =(req, res)=>{res.render("bloge", {title : "Blog"})}
 const getProfile =(req, res)=>{res.render("profile", {title : "Profile"})}
 const getReister =(req, res)=>{res.render("register", {title : "Register"})}
-const getLogin =(req, res)=>{res.render("login", {title : "Login"})}
+const getLogin =(req, res)=>{
+    res.render("login", {title : "Login"})
+    res.send(req.cookies.showToken)
+
+}
 
 const Joi = require('joi');
 
@@ -38,7 +42,7 @@ const loginAccess = async (req, res)=>{
             }, tokensfind, {
                 expiresIn : "1h"
             });
-            res.cookie("shoeToken" , token)
+            res.cookie("showToken" , token)
             res.send("login successfully")
         }else{
             res.send("authontaction failed!")

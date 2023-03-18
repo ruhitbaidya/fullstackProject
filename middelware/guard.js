@@ -1,14 +1,17 @@
+const express = require("express");
 const jwt = require('jsonwebtoken');
-require("dotenv").config();
 const cookieParser = require("cookie-parser");
-const tokenssce = process.env.secrateCode
-const tokenFinds = (req,res,next)=>{
-    const token = req.cookie.shoeToken;
-    const data = jwt.verify(token, tokenssce);
-    if(data){
-        next();
-    }else{
+const app = express();
+app.use(cookieParser())
+require("dotenv").config();
+const tokenFinds = async (req,res,next)=>{
+    try{
+        const tokens = await req.cookies.showToken;
+        const datas = jwt.verify(tokens, process.env.secrateCode);
+        next(datas);
+    }catch(err){
         res.redirect("/login")
+        console.log(err)
     }
 }
 
