@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const modelAddingData = require("../model/databaseSchemas")
 require("dotenv").config()
@@ -10,11 +11,7 @@ const getReister =(req, res)=>{res.render("register", {title : "Register"})}
 const getLogin =(req, res)=>{
     res.render("login", {title : "Login"})
     res.send(req.cookies.showToken)
-
 }
-
-const Joi = require('joi');
-
 const postRegister = async (req, res)=>{
     const dataMatch = await modelAddingData.find({email : req.body.email});
     if(dataMatch && dataMatch.length>0){

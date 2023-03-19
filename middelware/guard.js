@@ -8,7 +8,7 @@ const tokenFinds = async (req,res,next)=>{
     try{
         const tokens = await req.cookies.showToken;
         const datas = jwt.verify(tokens, process.env.secrateCode);
-        next(datas);
+        next();
     }catch(err){
         res.redirect("/login")
         console.log(err)
